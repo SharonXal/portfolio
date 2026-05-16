@@ -5,6 +5,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sharon Xalxo | Quantum Physicist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700;800&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -29,6 +32,15 @@
 
 <!-- HERO -->
 <section id="hero">
+  <!-- Animated background layers -->
+  <div class="hero-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+    <div class="particles" id="particles"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
   <div class="hero-inner container">
     <div class="hero-text">
       <div class="hero-tag">Quantum Physicist &amp; Researcher</div>
@@ -42,10 +54,62 @@
       <div class="social-row">
         <a href="https://github.com/SharonXal" target="_blank" class="social-btn">GitHub</a>
         <a href="mailto:sharonxal02@gmail.com" class="social-btn">Email</a>
-        <a href="https://www.linkedin.com/in/sharon-xalxo-8152a9387?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="social-btn">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/sharon-xalxo-8152a9387" target="_blank" class="social-btn">LinkedIn</a>
       </div>
     </div>
-    <div class="hero-avatar">&#9883;</div>
+
+    <!-- Quantum Mechanic Logo Circle -->
+    <div class="hero-avatar">
+      <svg class="avatar-svg" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4f8ef7"/>
+            <stop offset="50%" stop-color="#a855f7"/>
+            <stop offset="100%" stop-color="#ec4899"/>
+          </linearGradient>
+          <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1a1060" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#0a0f2c" stop-opacity="1"/>
+          </radialGradient>
+          <linearGradient id="orbitGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#4f8ef7" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#a855f7" stop-opacity="0.4"/>
+          </linearGradient>
+          <linearGradient id="orbitGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#ec4899" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#4f8ef7" stop-opacity="0.4"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Background circle -->
+        <circle cx="110" cy="110" r="105" fill="url(#bgGrad)" stroke="url(#ringGrad)" stroke-width="3"/>
+
+        <!-- Three orbital ellipses (atom-like) -->
+        <g class="atom-orbits">
+          <ellipse cx="110" cy="110" rx="80" ry="28" fill="none" stroke="url(#orbitGrad1)" stroke-width="1.5" transform="rotate(0 110 110)"/>
+          <ellipse cx="110" cy="110" rx="80" ry="28" fill="none" stroke="url(#orbitGrad2)" stroke-width="1.5" transform="rotate(60 110 110)"/>
+          <ellipse cx="110" cy="110" rx="80" ry="28" fill="none" stroke="url(#orbitGrad1)" stroke-width="1.5" transform="rotate(120 110 110)"/>
+        </g>
+
+        <!-- Orbiting electrons -->
+        <circle class="electron e1" cx="190" cy="110" r="4" fill="#4f8ef7"/>
+        <circle class="electron e2" cx="150" cy="180" r="4" fill="#a855f7"/>
+        <circle class="electron e3" cx="70" cy="180" r="4" fill="#ec4899"/>
+
+        <!-- Nucleus -->
+        <circle cx="110" cy="110" r="8" fill="url(#ringGrad)">
+          <animate attributeName="r" values="8;10;8" dur="2s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Autograph text -->
+        <text x="110" y="170" text-anchor="middle" class="autograph">QuantumMechanic</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-dot"></div></div>
   </div>
 </section>
 
@@ -55,9 +119,21 @@
     <div class="section-title">About Me</div>
     <div class="about-grid">
       <div class="about-text">
-        <p>I am a Physics graduate from IISER Thiruvananthapuram with a strong interest in quantum computing and quantum information science. My work sits at the intersection of theoretical physics and computational methods, focusing on how quantum algorithms can be leveraged to simulate complex physical systems.</p>
-        <p>Currently, I am part of a DST-NQM funded project developing a quantum ODE solver &mdash; a tool that could have broad applications across physics, chemistry, and engineering. I am actively seeking PhD opportunities to deepen my research in this space.</p>
-        <p>Outside research, I enjoy bridging the gap between theory and implementation &mdash; most of my projects have accompanying code, available on GitHub.</p>
+        <div class="about-content">
+          <p>I am a Physics graduate from IISER Thiruvananthapuram with a strong interest in quantum computing and quantum information science. My work sits at the intersection of theoretical physics and computational methods, focusing on how quantum algorithms can be leveraged to simulate complex physical systems.</p>
+
+          <div class="about-more" id="aboutMore">
+            <p>Currently, I am part of a DST-NQM funded project developing a quantum ODE solver &mdash; a tool that could have broad applications across physics, chemistry, and engineering. I am actively seeking PhD opportunities to deepen my research in this space.</p>
+            <p>Outside research, I enjoy bridging the gap between theory and implementation &mdash; most of my projects have accompanying code, available on GitHub. I find joy in the elegance of mathematical structures and the power of computational tools to make abstract physics tangible.</p>
+            <p>I'm particularly drawn to questions at the boundary of physics and computer science: how can we harness quantum mechanics not just to understand nature, but to compute things classically intractable?</p>
+          </div>
+        </div>
+
+        <button class="read-more-btn" id="aboutReadMore">
+          <span class="rm-text">Read more</span>
+          <span class="rm-icon">&#8595;</span>
+        </button>
+
         <div class="interest-tags">
           <span class="tag">Quantum Algorithms</span>
           <span class="tag">Open Quantum Systems</span>
@@ -110,30 +186,78 @@
   <div class="container">
     <div class="section-title">Research</div>
     <div class="research-grid">
-      <div class="res-card">
+
+      <div class="res-card" data-card="ode">
         <div class="res-icon">&#129518;</div>
         <div class="res-title">Quantum ODE Solver</div>
         <div class="res-desc">Developing a quantum algorithm to solve ordinary differential equations, as part of a DST-NQM funded project. Aims to demonstrate quantum advantage for differential equation problems relevant to physics and engineering.</div>
+        <div class="res-extra">
+          <p><strong>Project Type:</strong> DST-NQM Funded Research</p>
+          <p><strong>Status:</strong> Ongoing</p>
+          <p><strong>Description:</strong> [Add detailed description of the quantum ODE solver project here. Include the mathematical framework, the algorithmic approach (e.g., QSVT, LCU, HHL-based methods), implementation details, and key results so far.]</p>
+          <p><strong>Tools Used:</strong> Qiskit, Python, NumPy</p>
+          <p><strong>Collaborators:</strong> [Add collaborator names if any]</p>
+        </div>
         <span class="res-badge">Active Project</span>
+        <button class="res-readmore">
+          <span class="rm-text">Read more</span>
+          <span class="rm-icon">&#8595;</span>
+        </button>
       </div>
-      <div class="res-card">
+
+      <div class="res-card" data-card="open">
         <div class="res-icon">&#127754;</div>
         <div class="res-title">Open Quantum Systems</div>
         <div class="res-desc">Studied the dynamics of quantum systems interacting with an environment, including Lindblad master equations, decoherence, and dissipative quantum evolution. Implemented simulations available on GitHub.</div>
+        <div class="res-extra">
+          <p><strong>Focus Area:</strong> Dissipative Quantum Dynamics</p>
+          <p><strong>Key Topics:</strong> Lindblad equation, decoherence channels, Kraus operators, master equations</p>
+          <p><strong>Description:</strong> [Add detailed description of open quantum systems work. Include specific models studied, simulation methods, and any interesting findings.]</p>
+          <p><strong>Tools Used:</strong> QuTiP, Python, NumPy, SciPy</p>
+          <p><strong>Code:</strong> Available on <a href="https://github.com/SharonXal" target="_blank">GitHub</a></p>
+        </div>
         <span class="res-badge">Code Available</span>
+        <button class="res-readmore">
+          <span class="rm-text">Read more</span>
+          <span class="rm-icon">&#8595;</span>
+        </button>
       </div>
-      <div class="res-card">
+
+      <div class="res-card" data-card="dqs">
         <div class="res-icon">&#9889;</div>
         <div class="res-title">Digital Quantum Simulation of Field Theories</div>
         <div class="res-desc">Investigated how digital quantum computers can simulate quantum field theories using Trotterization and variational methods. Explored circuit implementations for lattice gauge theories.</div>
+        <div class="res-extra">
+          <p><strong>Focus Area:</strong> Quantum Field Theory on Quantum Computers</p>
+          <p><strong>Methods:</strong> Trotter-Suzuki decomposition, variational quantum eigensolvers, lattice gauge theory</p>
+          <p><strong>Description:</strong> [Add detailed description of digital quantum simulation work. Include specific field theories studied, circuit designs, and any results.]</p>
+          <p><strong>Tools Used:</strong> Qiskit, Python</p>
+          <p><strong>Code:</strong> Available on <a href="https://github.com/SharonXal" target="_blank">GitHub</a></p>
+        </div>
         <span class="res-badge">Code Available</span>
+        <button class="res-readmore">
+          <span class="rm-text">Read more</span>
+          <span class="rm-icon">&#8595;</span>
+        </button>
       </div>
-      <div class="res-card">
+
+      <div class="res-card" data-card="qalg">
         <div class="res-icon">&#128257;</div>
         <div class="res-title">Quantum Algorithms</div>
         <div class="res-desc">Broader interest in designing and analyzing quantum algorithms with practical applications &mdash; including variational quantum eigensolvers (VQE), quantum phase estimation, and hybrid classical-quantum approaches.</div>
+        <div class="res-extra">
+          <p><strong>Focus Area:</strong> Algorithm Design &amp; Analysis</p>
+          <p><strong>Specific Interests:</strong> QSVT, block encoding, VQE, QPE, HHL, hybrid algorithms</p>
+          <p><strong>Description:</strong> [Add detailed description of your work in quantum algorithms. Mention specific projects, papers read, implementations, or contributions.]</p>
+          <p><strong>Tools Used:</strong> Qiskit, Python</p>
+        </div>
         <span class="res-badge">Research Interest</span>
+        <button class="res-readmore">
+          <span class="rm-text">Read more</span>
+          <span class="rm-icon">&#8595;</span>
+        </button>
       </div>
+
     </div>
   </div>
 </section>
@@ -232,9 +356,9 @@
           <a href="https://github.com/SharonXal" target="_blank" class="c-link">
             <div class="c-icon">GH</div>github.com/SharonXal
           </a>
-          <!-- TODO: Add LinkedIn URL below -->
-          <a href="https://www.linkedin.com/in/sharon-xalxo-8152a9387?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="c-link">
-            <div class="c-icon">in</div>LinkedIn
+          <!-- LinkedIn link -->
+          <a href="https://www.linkedin.com/in/sharon-xalxo-8152a9387" target="_blank" class="c-link">
+            <div class="c-icon">in</div>LinkedIn Profile
           </a>
         </div>
       </div>
