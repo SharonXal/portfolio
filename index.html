@@ -125,8 +125,8 @@
 
           <div class="about-more" id="aboutMore">
             <p>Currently, I am part of a DST-NQM funded project developing a quantum ODE solver &mdash; a tool that could have broad applications across physics, chemistry, and engineering. I am actively seeking PhD opportunities to deepen my research in this space.</p>
-            <p>Outside research, I enjoy bridging the gap between theory and implementation &mdash; most of my projects have accompanying code, available on GitHub. I find joy in the elegance of mathematical structures and the power of computational tools to make abstract physics tangible.</p>
-            <p>I'm particularly drawn to questions at the boundary of physics and computer science: how can we harness quantum mechanics not just to understand nature, but to compute things classically intractable?</p>
+            <p>Outside research, I enjoy bridging the gap between theory and implementation. Most of my projects have accompanying code, available on GitHub. I find joy in the elegance of mathematical structures and the power of computational tools to make abstract physics tangible.</p>
+            <p>I'm particularly drawn to questions at the boundary of physics and computer science: how can we harness quantum mechanics not just to understand nature, but to compute things which are classically classically intractable?</p>
           </div>
         </div>
 
@@ -176,7 +176,7 @@
         <div class="tl-year">2020 &mdash; 2023</div>
         <div class="tl-degree">BSc. in Physics</div>
         <div class="tl-inst">Birla Institute of Technology (BIT), Mesra</div>
-        <div class="tl-desc">Foundation in classical and modern physics, mathematics, and computational methods.</div>
+        <div class="tl-desc">Foundation in classical and modern physics, mathematics, and computational methods for simulating condensed matter systems.</div>
       </div>
     </div>
   </div>
@@ -195,7 +195,25 @@
         <div class="res-extra">
           <p><strong>Project Type:</strong> DST-NQM Funded Research</p>
           <p><strong>Status:</strong> Ongoing</p>
-          <p><strong>Description:</strong> [Add detailed description of the quantum ODE solver project here. Include the mathematical framework, the algorithmic approach (e.g., QSVT, LCU, HHL-based methods), implementation details, and key results so far.]</p>
+          <p><strong>Description:</strong> We present a hardware-oriented hybrid quantum-classical implementation for solving linear
+ordinary differential equations via the Chebyshev spectral method and the Quantum Singular Value Transformation (QSVT) framework. A central practical obstacle in QSVT is
+block encoding: existing schemes are predominantly oracle-based and lack concrete, transpilable
+gate decompositions, while oracle-free alternatives such as FABLE and its variants
+incur large subnormalization factors (typically ∼ 20), rendering the resulting circuit depths in-
+tractable. Although recent efforts have begun to address explicit circuit-level constructions,
+non-normal dense matrices of the type arising from Chebyshev discretization remain particu-
+larly challenging, as standard Hermitian-oracle constructions fail entirely for such systems. Our
+primary contribution is a hardware-aware LCU block encoding via Pauli decomposition that is
+fully transpilable, achieving subnormalization ≈2.7 through a structured SELECT oracle (ex-
+actly 2q two-qubit gates), a don’t-care-optimized PREPARE circuit (5 CNOTs, reduced from
+15), and an ANF-minimized PHASE circuit (2 CZ gate). Combined with clean-mode re-
+flection operator optimization and direct numerical phase generation which yields real-valued
+output amplitudes, eliminating the need for state tomography or a Hadamard test. The best
+configuration achieves circuit depth 738 and 374 CX gates, a 284× improvement over the FA-
+BLE + PYQSP baseline. We validate correctness on a noiseless simulator and characterize
+noise-induced degradation under the ibm fez noise model. While depth 738 remains beyond
+reliable near-term execution, this work establishes a concrete, implementable QSVT pipeline
+for ODE solving and identifies clear directions for further depth reduction.</p>
           <p><strong>Tools Used:</strong> Qiskit, Python, NumPy</p>
           <p><strong>Collaborators:</strong> [Add collaborator names if any]</p>
         </div>
