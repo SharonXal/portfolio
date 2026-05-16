@@ -523,10 +523,8 @@ section { padding: 5rem 2rem; position: relative; }
   box-shadow: 0 10px 30px rgba(79, 142, 247, 0.15);
 }
 .res-card.expanded {
-  grid-column: 1 / -1;
-  transform: scale(1);
+  /* No longer used — modal replaces inline expansion */
 }
-.res-card.expanded::before { opacity: 1; }
 
 .res-icon {
   font-size: 2.2rem;
@@ -539,24 +537,7 @@ section { padding: 5rem 2rem; position: relative; }
   margin-bottom: 0.7rem;
 }
 .res-desc { font-size: 0.9rem; color: #a8b2d8; }
-.res-extra {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, margin 0.5s ease;
-  margin-top: 0;
-}
-.res-extra p {
-  font-size: 0.88rem;
-  color: #a8b2d8;
-  margin-bottom: 0.7rem;
-}
-.res-extra p strong { color: var(--accent); }
-.res-extra a { color: var(--accent2); text-decoration: none; }
-.res-extra a:hover { text-decoration: underline; }
-.res-card.expanded .res-extra {
-  max-height: 1000px;
-  margin-top: 1rem;
-}
+.res-extra { display: none; }
 .res-badge {
   display: inline-block;
   margin-top: 0.9rem;
@@ -586,7 +567,132 @@ section { padding: 5rem 2rem; position: relative; }
   transition: 0.25s;
 }
 .res-readmore:hover { background: var(--accent); color: #fff; }
-.res-readmore.active .rm-icon { transform: rotate(180deg); }
+
+/* ===== RESEARCH MODAL POPUP ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 8, 22, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+.modal-content {
+  background: linear-gradient(145deg, #151d3b 0%, #1a1f4a 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 2.5rem;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(79, 142, 247, 0.15);
+  transform: scale(0.7);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+  border-top: 3px solid;
+  border-image: linear-gradient(90deg, #4f8ef7, #a855f7, #ec4899) 1;
+}
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Custom scrollbar for modal */
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: var(--navy); border-radius: 4px; }
+.modal-content::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f8ef7, #a855f7);
+  border-radius: 4px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  color: var(--light);
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.25s;
+  z-index: 2;
+  font-family: inherit;
+}
+.modal-close:hover {
+  background: var(--accent);
+  color: #fff;
+  transform: rotate(90deg);
+  border-color: var(--accent);
+}
+
+.modal-body { padding-right: 1rem; }
+.modal-icon {
+  font-size: 3rem;
+  margin-bottom: 0.8rem;
+}
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.modal-badge {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #c89aff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 10px;
+  letter-spacing: 0.5px;
+}
+.modal-body p {
+  font-size: 0.95rem;
+  color: #c8d4ec;
+  margin-bottom: 0.9rem;
+  line-height: 1.75;
+}
+.modal-body p strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+.modal-body a {
+  color: var(--accent2);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent2);
+}
+.modal-body a:hover { color: var(--accent3); border-bottom-color: var(--accent3); }
+.modal-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 1.2rem 0;
+}
+
+/* Prevent body scroll when modal is open */
+body.modal-open { overflow: hidden; }
 
 /* ===== PROJECTS ===== */
 #projects { background: var(--navy); }
